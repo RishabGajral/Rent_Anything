@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rent Anything Bengaluru — Open the Map. Rent From Neighbours Today.</title>
+  <meta name="description" content="A free, map-first, peer-to-peer item rental platform coming to Bengaluru. Inspired by bengaluru.rent — no login to browse, list in 90 seconds, privacy by default." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Top Validation Banner -->
+  <div class="top-banner">
+    <span class="pulse-dot"></span>
+    <span><strong>Phase 0 Community Validation Live in Bengaluru:</strong> We’re testing excitement before launching neighbourhood #1. Are you in?</span>
+    <a href="#excitement-poll" style="color:#34d399; font-weight:700; text-decoration:underline;">Vote for your area →</a>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-icon">📍</div>
+        <span>Rent Anything</span>
+        <span class="brand-badge">BLR MVP</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#app-preview">App Screens</a>
+        <a href="#live-map-demo">Live Map Demo</a>
+        <a href="#excitement-poll">Vote Neighbourhood</a>
+        <a href="#principles">8 Principles</a>
+        <a href="#personas">User Journeys</a>
+        <a href="#architecture">Tech Stack</a>
+      </nav>
+      <button class="nav-cta" onclick="triggerQuickExcitement()">
+        <span>🔥 I'm Excited!</span>
+        <span id="nav-excited-count" style="background:rgba(0,0,0,0.2); padding:2px 8px; border-radius:999px; font-family:var(--font-mono);">1,428</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">🚀 Coming Soon to Bengaluru · Inspired by bengaluru.rent</div>
+          <h1 class="hero-title">
+            Open the map.<br />
+            See what’s nearby.<br />
+            <span class="gradient-text">Rent it today.</span>
+          </h1>
+          <p class="hero-lead">
+            Need a <strong>50mm lens</strong> for a cousin's wedding, a <strong>camping tent</strong> for a weekend trek, a <strong>Bosche drill</strong> for 2 hours, or a <strong>projector</strong> for match night? Stop buying things you use once. Rent from verified neighbours 800m away.
+          </p>
+          <div class="hero-quote">
+            “No landing page carousel. No login required to browse. Tap a WhatsApp link → full-screen map with live price pins in <strong>&lt;3 seconds</strong>.”
+          </div>
+
+          <!-- Interactive Excitement Box -->
+          <div class="excitement-hero-box">
+            <div class="excitement-question">
+              <span>⚡ Would you use this app in Bengaluru?</span>
+              <span class="live-excitement-pill">🔥 <strong id="hero-excited-counter">1,428</strong> locals excited</span>
+            </div>
+            <p style="font-size:0.88rem; color:var(--text-muted);">
+              Click below to show your excitement & help us measure demand before we launch our first micro-neighbourhood!
+            </p>
+            <div class="excitement-actions">
+              <button id="main-excited-btn" class="btn-excited-main" onclick="triggerQuickExcitement()">
+                <span id="excited-btn-icon">🔥</span>
+                <span id="excited-btn-text">Yes! I'm Excited for Rent Anything</span>
+              </button>
+              <a href="#excitement-poll" class="btn-secondary">
+                🗳️ Pick My Neighbourhood
+              </a>
+            </div>
+            <div id="excited-feedback-msg" style="display:none; margin-top:12px; font-size:0.86rem; color:#6ee7b7; font-weight:600;">
+              🎉 You’re #1,429! Scroll down to vote for your Bengaluru neighbourhood & tell us what item you'd rent or list first.
+            </div>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-chip">
+              <strong>&lt; 3 sec</strong>
+              <span>Map load on 4G Android</span>
+            </div>
+            <div class="metric-chip">
+              <strong>₹0 Fees</strong>
+              <span>100% Free community tool</span>
+            </div>
+            <div class="metric-chip">
+              <strong>±150m</strong>
+              <span>Fuzzy pin privacy by default</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: High-Res App Mockup Preview Switcher -->
+        <div class="hero-phone-wrapper">
+          <div class="floating-badge-card floating-top-left">
+            <div style="color:#34d399; font-weight:700;">🔓 Zero Friction Browse</div>
+            <div style="color:var(--text-muted); font-size:0.74rem;">No login or app install needed</div>
+          </div>
+
+          <div class="phone-frame">
+            <img id="hero-phone-img" src="assets/map-home-mockup.jpg" alt="Rent Anything Bengaluru App Map Home Screen" class="phone-screen-img" />
+            <div class="hero-screen-switcher">
+              <button class="hero-screen-btn active" onclick="switchHeroScreen(0, this)">1. Map Home</button>
+              <button class="hero-screen-btn" onclick="switchHeroScreen(1, this)">2. Item Detail</button>
+              <button class="hero-screen-btn" onclick="switchHeroScreen(2, this)">3. Safe Handover</button>
+            </div>
+          </div>
+
+          <div class="floating-badge-card floating-bottom-right">
+            <div style="color:#fb923c; font-weight:700;">🔍 Wanted Pins Included</div>
+            <div style="color:var(--text-muted); font-size:0.74rem;">"Need projector near Indiranagar"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: App Visual Mockups & What the App Looks Like -->
+  <section id="app-preview" style="background: rgba(15, 23, 42, 0.45); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">📱 First Look at the App Experience</div>
+        <h2 class="section-title">Designed for a ₹12,000 Android Phone on 4G</h2>
+        <p class="section-subtitle">
+          Here is what the upcoming <strong>Rent Anything</strong> mobile web app looks like in action — built around three frictionless flows: Browse without login, Request in one tap, and Safe neighbourhood handover.
+        </p>
+      </div>
+
+      <div class="mockup-tabs">
+        <button class="mockup-tab-btn active" onclick="highlightMockupCard('all', this)">Show All 3 Core Screens</button>
+        <button class="mockup-tab-btn" onclick="highlightMockupCard(0, this)">🗺️ Screen 1: Map-First Home (R1–R6)</button>
+        <button class="mockup-tab-btn" onclick="highlightMockupCard(1, this)">📸 Screen 2: Item Detail & Calendar (R4, R12)</button>
+        <button class="mockup-tab-btn" onclick="highlightMockupCard(2, this)">🤝 Screen 3: Privacy & WhatsApp Handover (R8, R14)</button>
+      </div>
+
+      <div class="mockup-showcase-grid">
+        <!-- Mockup 1 -->
+        <div class="mockup-card" id="mockup-card-0">
+          <div class="mockup-img-container">
+            <span class="screen-step-tag">Screen 01 · Map is the Product</span>
+            <img src="assets/map-home-mockup.jpg" alt="Map Home Screen Mockup" onclick="openLightbox(this.src, 'Map-First Home Screen: See price pins & Wanted pins across Bengaluru with zero login required.')" />
+          </div>
+          <div class="mockup-card-body">
+            <div>
+              <h3>1. Full-Screen Map & Price Pins</h3>
+              <p>
+                Open the link and immediately see live item pins (<code>📷 ₹600/day</code>, <code>⛺ ₹350/day</code>, <code>🔧 ₹200/day</code>) and orange <strong>Wanted Pins</strong> (<code>🔍 Need Projector</code>). Includes smart clustering, combined place + item search, and live savings counter.
+              </p>
+            </div>
+            <div class="feature-Tag-list">
+              <span class="feature-tag">No Login Required</span>
+              <span class="feature-tag">Pin Clustering</span>
+              <span class="feature-tag">Wanted Pins</span>
+              <span class="feature-tag">&lt;3s on 4G</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mockup 2 -->
+        <div class="mockup-card" id="mockup-card-1">
+          <div class="mockup-img-container">
+            <span class="screen-step-tag">Screen 02 · Transparent Trust</span>
+            <img src="assets/item-detail-mockup.jpg" alt="Item Detail Bottom Sheet Mockup" onclick="openLightbox(this.src, 'Item Detail Card: Swipeable photos, daily & weekly pricing, refundable deposit, 30-day calendar, and 1-tap Request to Rent.')" />
+          </div>
+          <div class="mockup-card-body">
+            <div>
+              <h3>2. Bottom-Sheet Item Card & Calendar</h3>
+              <p>
+                Tap any pin to inspect swipeable condition photos, daily rate, refundable security deposit, approximate distance (e.g., <em>HSR Layout · 1.2 km away</em>), owner ratings (4.8★), and a live 30-day availability calendar.
+              </p>
+            </div>
+            <div class="feature-Tag-list">
+              <span class="feature-tag">30-Day Calendar</span>
+              <span class="feature-tag">Deposit Clarity</span>
+              <span class="feature-tag">Google 1-Tap Auth</span>
+              <span class="feature-tag">WhatsApp Share</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mockup 3 -->
+        <div class="mockup-card" id="mockup-card-2">
+          <div class="mockup-img-container">
+            <span class="screen-step-tag">Screen 03 · Privacy by Default</span>
+            <img src="assets/lister-connect-mockup.jpg" alt="Privacy Circle and WhatsApp Handover Mockup" onclick="openLightbox(this.src, 'Privacy & Safe Handover: Exact coordinates are rounded to ±150m. Contact is revealed only after the owner accepts your request.')" />
+          </div>
+          <div class="mockup-card-body">
+            <div>
+              <h3>3. ±150m Fuzzy Privacy & Safe Meetup</h3>
+              <p>
+                Exact addresses are <strong>never</strong> stored or displayed. Once an owner accepts a request, both parties unlock a direct WhatsApp link and meet at a public spot like a Metro Station or Third Wave Coffee.
+              </p>
+            </div>
+            <div class="feature-Tag-list">
+              <span class="feature-tag">±150m Fuzzy GPS</span>
+              <span class="feature-tag">Mutual Consent</span>
+              <span class="feature-tag">Condition Photos</span>
+              <span class="feature-tag">DPDP Ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Interactive Live Map Prototype (Powered by MapLibre GL JS) -->
+  <section id="live-map-demo">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">🗺️ Interactive Concept Sandbox · MapLibre GL JS</div>
+        <h2 class="section-title">Test Drive the Bengaluru Rental Map Right Now</h2>
+        <p class="section-subtitle">
+          Experience Principle #1 (<em>“The Map IS the Product”</em>). Click any pin in Indiranagar, Koramangala, HSR Layout, or Whitefield, filter categories, or test posting a Wanted Pin.
+        </p>
+      </div>
+
+      <div class="map-sandbox-wrapper">
+        <!-- Map Toolbar -->
+        <div class="map-toolbar">
+          <div class="map-search-group">
+            <input
+              type="text"
+              id="map-search-input"
+              class="map-search-input"
+              placeholder="Search 'projector', 'tent', 'HSR Layout', 'Indiranagar'..."
+              oninput="handleMapSearch(this.value)"
+            />
+            <button class="btn-secondary" style="padding:9px 14px; font-size:0.82rem;" onclick="locateUserDemo()">
+              🎯 Near Me
+            </button>
+          </div>
+
+          <div class="filter-pills">
+            <button class="filter-pill active" onclick="filterMapCategory('all', this)">All Pins (10)</button>
+            <button class="filter-pill" onclick="filterMapCategory('Cameras', this)">📷 Cameras</button>
+            <button class="filter-pill" onclick="filterMapCategory('Trekking', this)">⛺ Trekking</button>
+            <button class="filter-pill" onclick="filterMapCategory('Tools', this)">🔧 Tools</button>
+            <button class="filter-pill" onclick="filterMapCategory('Party & AV', this)">📽️ Party & AV</button>
+            <button class="filter-pill" onclick="filterMapCategory('Baby & Home', this)">🛏️ Baby & Home</button>
+            <button class="filter-pill wanted-pill" onclick="filterMapCategory('Wanted', this)">🔍 Wanted Pins</button>
+          </div>
+        </div>
+
+        <!-- Map + Detail Side Panel Stage -->
+        <div class="map-stage">
+          <div id="bengaluru-map">
+            <!-- Public Counter Badge (R24) -->
+            <div class="map-floating-counter">
+              🟢 <strong>142</strong> items listed · <strong>68</strong> rentals completed · <strong>₹4,20,000</strong> saved
+            </div>
+
+            <!-- Quick Neighbourhood Jumpers -->
+            <div class="map-area-jumper">
+              <button class="area-jump-btn" onclick="flyToArea(77.6412, 12.9719, 14)">📍 Indiranagar</button>
+              <button class="area-jump-btn" onclick="flyToArea(77.6245, 12.9352, 14)">📍 Koramangala</button>
+              <button class="area-jump-btn" onclick="flyToArea(77.6387, 12.9121, 14)">📍 HSR Layout</button>
+              <button class="area-jump-btn" onclick="flyToArea(77.7499, 12.9698, 13.5)">📍 Whitefield</button>
+            </div>
+          </div>
+
+          <!-- Side Panel (R4 Item Detail Card) -->
+          <div class="map-detail-panel" id="map-detail-panel">
+            <!-- Populated dynamically by app.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Excitement Meter & Neighbourhood Launch Poll -->
+  <section id="excitement-poll" style="background: linear-gradient(180deg, rgba(16, 185, 129, 0.07) 0%, rgba(15, 23, 42, 0.6) 100%); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">🔥 Demand Validation & Launch Waitlist</div>
+        <h2 class="section-title">Bring Rent Anything to Your Neighbourhood First</h2>
+        <p class="section-subtitle">
+          Why did older P2P rental startups fail? They launched city-wide with an empty map. <strong>Our Rule #4:</strong> Launch one dense micro-neighbourhood at a time (100–150 seeded items). Vote below to help us pick Launch Zone #1!
+        </p>
+      </div>
+
+      <div class="validation-grid">
+        <!-- Left: Interactive Excitement & Interest Form -->
+        <div class="poll-card">
+          <h3 style="font-size:1.35rem; margin-bottom:6px;">🙋‍♀️ Show Your Excitement & Pledge</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:18px;">
+            Takes 15 seconds. Tell us how you'd use the platform so we can gauge real user potential.
+          </p>
+
+          <form id="excitement-form" onsubmit="submitExcitementPoll(event)">
+            <label style="font-size:0.85rem; font-weight:600; color:#cbd5e1;">1. How excited are you about this concept?</label>
+            <div class="role-options" id="excitement-level-group">
+              <button type="button" class="role-btn selected" onclick="selectPollOption('excitement-level-group', this, 'Super Excited 🔥')">
+                🔥 Super Excited!
+              </button>
+              <button type="button" class="role-btn" onclick="selectPollOption('excitement-level-group', this, 'Curious 👀')">
+                👀 Curious to Try
+              </button>
+              <button type="button" class="role-btn" onclick="selectPollOption('excitement-level-group', this, 'Ready to List 📦')">
+                📦 Have Items to List
+              </button>
+            </div>
+
+            <label style="font-size:0.85rem; font-weight:600; color:#cbd5e1;">2. Which describes you best?</label>
+            <div class="role-options" id="user-role-group">
+              <button type="button" class="role-btn selected" onclick="selectPollOption('user-role-group', this, 'both')">
+                🔄 Both Rent & Lend
+              </button>
+              <button type="button" class="role-btn" onclick="selectPollOption('user-role-group', this, 'renter')">
+                🎒 Mainly a Renter
+              </button>
+              <button type="button" class="role-btn" onclick="selectPollOption('user-role-group', this, 'lister')">
+                💰 Mainly an Owner
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label for="poll-neighbourhood">3. Your Bengaluru Neighbourhood (Votes for Launch Zone #1)</label>
+              <select id="poll-neighbourhood" class="form-control" required>
+                <option value="HSR Layout">HSR Layout (Currently #1)</option>
+                <option value="Koramangala">Koramangala</option>
+                <option value="Indiranagar">Indiranagar</option>
+                <option value="Whitefield">Whitefield</option>
+                <option value="Bellandur / Sarjapur">Bellandur / Sarjapur Road</option>
+                <option value="JP Nagar / Jayanagar">JP Nagar / Jayanagar</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="poll-item">4. What is 1 item you would love to RENT or LIST first?</label>
+              <input
+                type="text"
+                id="poll-item"
+                class="form-control"
+                placeholder="e.g., 50mm lens, Quechua tent, Bosch drill, PS5 controller, projector..."
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="poll-contact">5. Email or WhatsApp (Optional — only to notify when your area unlocks)</label>
+              <input
+                type="text"
+                id="poll-contact"
+                class="form-control"
+                placeholder="you@example.com or +91 98765..."
+              />
+            </div>
+
+            <button type="submit" class="btn-excited-main" style="width:100%; margin-top:8px;">
+              🚀 Submit My Excitement Vote & Boost My Area
+            </button>
+          </form>
+        </div>
+
+        <!-- Right: Live Neighbourhood Leaderboard & Recent Community Pledges -->
+        <div class="poll-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+              <h3 style="font-size:1.3rem;">🏆 Neighbourhood Launch Race</h3>
+              <span class="live-excitement-pill">Target: 500 votes/area</span>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:22px;">
+              The first neighbourhood to hit <strong>500 excited neighbours & 150 pledged items</strong> gets unlocked first with zero platform fees.
+            </p>
+
+            <div id="neighbourhood-leaderboard">
+              <!-- Populated by app.js -->
+            </div>
+          </div>
+
+          <!-- Live Community Item Feed -->
+          <div style="margin-top:24px; padding-top:20px; border-top:1px solid var(--border);">
+            <div style="font-size:0.82rem; font-family:var(--font-mono); color:#34d399; margin-bottom:10px; text-transform:uppercase;">
+              ⚡ Live Item Pledges From Bengaluru Neighbours
+            </div>
+            <div id="recent-pledges-feed" style="display:flex; flex-direction:column; gap:8px; font-size:0.85rem;">
+              <!-- Populated by app.js -->
+            </div>
+
+            <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn-secondary" style="flex:1; font-size:0.84rem;" onclick="shareOnWhatsApp()">
+                💬 Share Concept on WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: 8 Core Design Principles -->
+  <section id="principles">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">🧭 Product Philosophy</div>
+        <h2 class="section-title">8 Non-Negotiable Design Principles</h2>
+        <p class="section-subtitle">
+          Copied from the proven low-friction DNA of <code>bengaluru.rent</code> and adapted for short-term peer-to-peer consumer item rentals.
+        </p>
+      </div>
+
+      <div class="principles-grid">
+        <div class="principle-card">
+          <span class="principle-num">Principle #01</span>
+          <h4>Map IS the Product</h4>
+          <p>No bloated landing page, no onboarding carousel. The interactive map full of price pins IS the very first screen.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">Principle #02</span>
+          <h4>Zero Friction to Browse</h4>
+          <p>No login, no app install, no invasive permissions. Tap a WhatsApp link → browse the live map in under 3 seconds.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">Principle #03</span>
+          <h4>List in Under 2 Minutes</h4>
+          <p>Minimal required fields, smart defaults, client-side browser photo compression, and 1-tap GPS pre-fill.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">Principle #04</span>
+          <h4>One Neighbourhood at a Time</h4>
+          <p>Never launch city-wide with sparse pins. High pin density in HSR Layout or Indiranagar beats thin coverage across Bengaluru.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">Principle #05</span>
+          <h4>Community First, Business Later</h4>
+          <p>No platform fees, no ads, and no premium tiers for at least 9 months until organic neighbourhood habit is proven.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">Principle #06</span>
+          <h4>Privacy by Default (DPDP)</h4>
+          <p>Exact coordinates rounded to ±150m before storage. Contact details revealed only after mutual request acceptance.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">Principle #07</span>
+          <h4>Cost Near Zero (&lt;₹3,000/mo)</h4>
+          <p>Every architectural choice optimises for free tiers (Supabase, MapLibre, Vercel, Resend) to survive without premature commissions.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">Principle #08</span>
+          <h4>Mobile-First, Not Mobile-Only</h4>
+          <p>Engineered for a ₹12,000 Android phone on 4G (360px viewport, ≥44px touch targets, &lt;1.5s First Contentful Paint).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: User Personas & Counter-Strategy -->
+  <section id="personas" style="background: rgba(15, 23, 42, 0.45); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">👥 Who Is Rent Anything Built For?</div>
+        <h2 class="section-title">Real Bengaluru Personas & Why We Win</h2>
+        <p class="section-subtitle">
+          Bengaluru’s young, mobile population constantly needs gear for a weekend — while the same gear sits idle in a neighbour’s cupboard 500 metres away.
+        </p>
+      </div>
+
+      <div class="personas-grid">
+        <div class="persona-card">
+          <div class="persona-header">
+            <div class="persona-avatar">📸</div>
+            <div>
+              <h4 style="font-size:1.05rem;">Arjun, 27</h4>
+              <span style="font-size:0.78rem; color:#34d399; font-family:var(--font-mono);">HSR Layout · Renter</span>
+            </div>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
+            <strong>Scenario:</strong> Cousin's wedding this Saturday. Wants a 50mm f/1.4 lens for 2 days. Buying costs ₹35,000; SP Road shop is far and charges ₹1,500.
+          </p>
+          <div style="font-size:0.82rem; color:#e2e8f0; background:rgba(16,185,129,0.1); padding:10px; border-radius:8px; border-left:3px solid var(--primary);">
+            <strong>What wins him:</strong> Sees a pin 1.2 km away for ₹600/day, taps Request, picks up Friday evening at Silk Board Metro.
+          </div>
+        </div>
+
+        <div class="persona-card">
+          <div class="persona-header">
+            <div class="persona-avatar">⛺</div>
+            <div>
+              <h4 style="font-size:1.05rem;">Priya, 31</h4>
+              <span style="font-size:0.78rem; color:#34d399; font-family:var(--font-mono);">Koramangala · Owner</span>
+            </div>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
+            <strong>Scenario:</strong> Owns a ₹8,000 camping tent, ₹4,000 JBL speaker, and ₹3,500 drill gathering dust. Wants passive income without strangers knowing her flat number.
+          </p>
+          <div style="font-size:0.82rem; color:#e2e8f0; background:rgba(16,185,129,0.1); padding:10px; border-radius:8px; border-left:3px solid var(--primary);">
+            <strong>What wins her:</strong> Lists in 90 seconds with ±150m fuzzy location. Meets at Third Wave Coffee, collects ₹1,000 UPI deposit.
+          </div>
+        </div>
+
+        <div class="persona-card">
+          <div class="persona-header">
+            <div class="persona-avatar">🍼</div>
+            <div>
+              <h4 style="font-size:1.05rem;">Rahul & Sneha</h4>
+              <span style="font-size:0.78rem; color:#fb923c; font-family:var(--font-mono);">Whitefield · Wanted Pin</span>
+            </div>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
+            <strong>Scenario:</strong> Just moved to Whitefield. Need a baby cot for 2–3 months while settling in. Buying new is ₹12,000; Rentomojo is ₹800/mo + lock-in.
+          </p>
+          <div style="font-size:0.82rem; color:#e2e8f0; background:rgba(249,115,22,0.12); padding:10px; border-radius:8px; border-left:3px solid var(--accent-orange);">
+            <strong>What wins them:</strong> Posts an orange <em>Wanted Pin</em>. Gets notified that a neighbour 800m away has an outgrown cot for ₹400/mo.
+          </div>
+        </div>
+
+        <div class="persona-card">
+          <div class="persona-header">
+            <div class="persona-avatar">🏪</div>
+            <div>
+              <h4 style="font-size:1.05rem;">Deepak, 42</h4>
+              <span style="font-size:0.78rem; color:#60a5fa; font-family:var(--font-mono);">SP Road · Phase 4 Shop</span>
+            </div>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
+            <strong>Scenario:</strong> Local camera equipment rental shop owner with 50+ items who currently relies only on word-of-mouth and static Google Maps reviews.
+          </p>
+          <div style="font-size:0.82rem; color:#e2e8f0; background:rgba(59,130,246,0.12); padding:10px; border-radius:8px; border-left:3px solid var(--accent-blue);">
+            <strong>What wins him:</strong> Verified "Shop" badge on the map, bulk upload, and local demand analytics.
+          </div>
+        </div>
+      </div>
+
+      <!-- Counter-Strategy Table -->
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Why Past P2P Rental Startups Failed (Rentomo, RentSher, Fat Llama)</th>
+              <th>Our Rent-Anything Counter-Strategy</th>
+              <th>How We Differentiate from bengaluru.rent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Cold-Start / Empty Map:</strong> Launched city-wide; users saw zero items near them and bounced.</td>
+              <td><strong>Micro-Neighbourhood Density:</strong> Seed 100–150 items by hand in ONE area before expanding.</td>
+              <td><strong>Domain:</strong> Short-term daily/weekly item rentals vs. monthly flat rentals.</td>
+            </tr>
+            <tr>
+              <td><strong>2. Trust Gap:</strong> Handing a ₹50k camera to a stranger without protection felt risky.</td>
+              <td><strong>Start with Low/Mid-Value Gear:</strong> Drills, tents, projectors + condition photos, ratings & UPI deposits.</td>
+              <td><strong>Availability:</strong> Interactive 30-day booking calendar vs. static active/inactive listing.</td>
+            </tr>
+            <tr>
+              <td><strong>3. Logistics Friction:</strong> High coordination effort for a ₹300/day item.</td>
+              <td><strong>Hyperlocal (&lt;1.5 km) + Safe Spots:</strong> Meet at nearby Metro stations or cafés; WhatsApp 1-click connect.</td>
+              <td><strong>Demand Signal:</strong> Orange <em>Wanted Pins</em> ("Need projector Oct 20–22") with 5km daily owner email digest.</td>
+            </tr>
+            <tr>
+              <td><strong>4. Premature Monetisation & High Fees:</strong> Charging 20–25% commission killed liquidity.</td>
+              <td><strong>Near-Zero Cost (&lt;₹3k/mo):</strong> 100% free for 9+ months. No employees, no inventory, community-driven.</td>
+              <td><strong>Contact Reveal:</strong> Revealed only after owner accepts a structured date request.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: System Architecture & Mentioned Tools -->
+  <section id="architecture">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">⚙️ Built With Modern Zero-Cost Tools</div>
+        <h2 class="section-title">System Architecture (&lt;₹3,000/Month at Scale)</h2>
+        <p class="section-subtitle">
+          Every tool mentioned in our specification is chosen to deliver sub-3-second mobile performance on 4G while keeping infrastructure costs near zero.
+        </p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-card-head">
+            <strong>Next.js (App Router) + React</strong>
+            <span class="tech-cost-tag">Vercel Free Tier</span>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-muted);">
+            SSR for SEO browse pages (<code>/rent/cameras/indiranagar</code>) and fast CSR for the interactive map & PWA offline service worker shell.
+          </p>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card-head">
+            <strong>MapLibre GL JS + Vector Tiles</strong>
+            <span class="tech-cost-tag">Open Source</span>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-muted);">
+            Drop-in open-source WebGL map rendering, dynamic price pins, zoom-level clustering (≤15 zoom), and smooth pan/zoom on budget Android phones.
+          </p>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card-head">
+            <strong>Supabase + PostgreSQL + PostGIS</strong>
+            <span class="tech-cost-tag">Free Tier (500MB)</span>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-muted);">
+            Powers geospatial queries (<code>ST_DWithin</code> 5km radius alerts, <code>ST_MakeEnvelope</code> viewport queries), Row-Level Security (RLS), and Realtime badges.
+          </p>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card-head">
+            <strong>Supabase Auth & Storage</strong>
+            <span class="tech-cost-tag">50k MAU Free</span>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-muted);">
+            Google OAuth 1-tap + Magic Link verification. Client-side browser image compression uploads directly to S3-compatible Supabase Storage CDN.
+          </p>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card-head">
+            <strong>Supabase Edge Functions + Resend</strong>
+            <span class="tech-cost-tag">3,000 Emails/mo Free</span>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-muted);">
+            Deno edge functions + <code>pg_cron</code> trigger instant request emails, post-rental return reminders, and daily 5km Wanted Pin digests via Resend.
+          </p>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card-head">
+            <strong>Nominatim / Photon + Plausible</strong>
+            <span class="tech-cost-tag">Cookie-Free DPDP</span>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-muted);">
+            Free open-source geocoding for Bengaluru neighbourhood search (&lt;500ms) paired with privacy-first, cookie-less Plausible/Umami analytics.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div style="font-weight:800; font-size:1.2rem; color:var(--text-main); margin-bottom:8px;">
+        📍 Rent Anything Bengaluru — Pre-Launch Concept & Demand Tracker
+      </div>
+      <p style="max-width:640px; margin:0 auto 18px;">
+        An intermediary community map tool. Zero platform fees, privacy by default (±150m fuzzy coordinates), and built for neighbours in Bengaluru.
+      </p>
+      <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:20px;">
+        <button class="nav-cta" onclick="triggerQuickExcitement()">🔥 Click to Add Your Excitement Vote</button>
+        <a href="#live-map-demo" class="btn-secondary" style="padding:9px 18px;">🗺️ Explore Map Prototype</a>
+      </div>
+      <div style="font-size:0.78rem; color:var(--text-dim);">
+        DPDP Compliant · 18+ Honour Gate · Prohibited Items Auto-Filter · Inspired by bengaluru.rent
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal for App Mockups -->
+  <div id="lightbox-modal" onclick="closeLightbox()" style="display:none; position:fixed; inset:0; background:rgba(7,11,20,0.92); z-index:1000; align-items:center; justify-content:center; padding:24px; flex-direction:column; gap:14px;">
+    <img id="lightbox-img" src="" alt="Expanded App Preview" style="max-height:82vh; max-width:92vw; border-radius:24px; border:2px solid var(--primary); box-shadow:0 25px 60px rgba(0,0,0,0.8);" />
+    <p id="lightbox-caption" style="color:#e2e8f0; font-size:0.95rem; max-width:600px; text-align:center;"></p>
+    <span style="color:var(--text-muted); font-size:0.8rem;">Click anywhere to close</span>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-notification">
+    <span id="toast-text">🎉 Thanks for showing your excitement!</span>
+  </div>
+
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
