@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
   <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -23,10 +24,31 @@
   <!-- Sticky Navbar -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="#" class="brand">
-        <div class="brand-icon">📍</div>
-        <span>Rent Anything</span>
-        <span class="brand-badge">BENGALURU</span>
+      <a href="#" class="brand" aria-label="Rent Anything Bengaluru Home">
+        <svg class="brand-logo-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="navBgGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#10B981" />
+              <stop offset="55%" stop-color="#059669" />
+              <stop offset="100%" stop-color="#047857" />
+            </linearGradient>
+            <linearGradient id="navPinGrad" x1="16" y1="10" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FFFFFF" />
+              <stop offset="100%" stop-color="#D1FAE5" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#navBgGrad)" stroke="#6EE7B7" stroke-opacity="0.45" stroke-width="2" />
+          <path d="M14 44C22 39 42 39 50 44" stroke="#A7F3D0" stroke-opacity="0.28" stroke-width="2" stroke-linecap="round" />
+          <ellipse cx="32" cy="50" rx="13" ry="4" fill="#022C22" fill-opacity="0.32" />
+          <path d="M32 11C22.611 11 15 18.611 15 28C15 39.25 32 52 32 52C32 52 49 39.25 49 28C49 18.611 41.389 11 32 11Z" fill="url(#navPinGrad)" />
+          <circle cx="32" cy="27.5" r="9.5" fill="#064E3B" />
+          <path d="M27.5 25.5H35.5L33.2 23.2" stroke="#34D399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M36.5 29.5H28.5L30.8 31.8" stroke="#FB923C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <div class="brand-wordmark">
+          <span class="brand-name">Rent<span class="brand-name-accent">Anything</span></span>
+          <span class="brand-sub"><span class="brand-sub-dot"></span>Bengaluru</span>
+        </div>
       </a>
       <nav class="nav-links">
         <a href="#app-preview">App Preview</a>
@@ -475,8 +497,14 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <div style="font-weight:800; font-size:1.2rem; color:var(--text-main); margin-bottom:8px;">
-        📍 Rent Anything Bengaluru — Coming Soon to Your Neighbourhood
+      <div style="display:flex; justify-content:center; margin-bottom:14px;">
+        <a href="#" class="brand" style="text-align:left;">
+          <img src="assets/logo.svg" alt="Rent Anything Logo" class="brand-logo-svg" />
+          <div class="brand-wordmark">
+            <span class="brand-name">Rent<span class="brand-name-accent">Anything</span></span>
+            <span class="brand-sub"><span class="brand-sub-dot"></span>Bengaluru</span>
+          </div>
+        </a>
       </div>
       <p style="max-width:640px; margin:0 auto 18px;">
         100% free community platform to rent and lend everyday items with neighbours nearby. Privacy-first, zero platform fees, built for Bengaluru.
