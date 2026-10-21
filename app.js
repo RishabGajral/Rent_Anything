@@ -592,8 +592,11 @@ function renderDetailPanel(pin) {
           <span>👤 <strong>${pin.owner}</strong></span>
           <span style="color:#fbbf24; font-weight:700;">${pin.rating}</span>
         </div>
-        <div style="color:var(--text-muted); font-size:0.78rem;">
+        <div style="color:var(--text-muted); font-size:0.78rem; margin-bottom:4px;">
           🤝 Suggested Handover: <strong style="color:#cbd5e1;">${pin.handoverSpot}</strong>
+        </div>
+        <div style="color:#34d399; font-size:0.75rem; font-family:var(--font-mono);">
+          🔒 Phone number &amp; address hidden until owner approves
         </div>
       </div>
 

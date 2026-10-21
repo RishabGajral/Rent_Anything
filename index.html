@@ -52,6 +52,7 @@
       </a>
       <nav class="nav-links">
         <a href="#app-preview">App Preview</a>
+        <a href="#privacy-promise">Privacy &amp; Safety</a>
         <a href="#live-map-demo">Try Live Map</a>
         <a href="#excitement-poll">Vote Your Area</a>
         <a href="#personas">Use Cases</a>
@@ -210,21 +211,95 @@
         <div class="mockup-card" id="mockup-card-2">
           <div class="mockup-img-container">
             <span class="screen-step-tag">Step 03 · Privacy &amp; Pickup</span>
-            <img src="assets/lister-connect-mockup.jpg" alt="Privacy Circle and WhatsApp Handover Mockup" onclick="openLightbox(this.src, 'Safe Handover: Exact addresses are never shown. Connect on WhatsApp only after your request is accepted.')" />
+            <img src="assets/lister-connect-mockup.jpg" alt="Privacy Circle and WhatsApp Handover Mockup" onclick="openLightbox(this.src, 'Safe Handover: Exact addresses and phone numbers are never shown publicly. Connect on WhatsApp only after you explicitly approve the request.')" />
           </div>
           <div class="mockup-card-body">
             <div>
-              <h3>3. Safe Privacy Circle &amp; Easy Handover</h3>
+              <h3>3. Approval-Only Contact &amp; Address Privacy</h3>
               <p>
-                Your exact flat or house address is <strong>never</strong> shown on the map. Once the owner accepts your request, you both connect on WhatsApp and meet at a convenient nearby spot like a Metro Station or café.
+                Your mobile number and exact home address are <strong>hidden by default</strong>. A user can only see your number or pickup spot <strong>after you explicitly approve</strong> their request.
               </p>
             </div>
             <div class="feature-Tag-list">
+              <span class="feature-tag">Number Hidden Until Approved</span>
               <span class="feature-tag">Address Kept Private</span>
-              <span class="feature-tag">WhatsApp Connect</span>
-              <span class="feature-tag">Condition Verified</span>
+              <span class="feature-tag">Safe Public Pickup</span>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dedicated Privacy & Trust Section -->
+  <section id="privacy-promise" style="border-bottom: 1px solid var(--border); background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.11), transparent 60%);">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">🔒 Highest Privacy for Renters &amp; Owners</div>
+        <h2 class="section-title">Your Mobile Number &amp; Address Are Never Public</h2>
+        <p class="section-subtitle">
+          We know the biggest hesitation in lending or renting from neighbours is privacy. On <strong>Rent Anything</strong>, both the renter’s and the owner’s personal details are strictly protected at every step.
+        </p>
+      </div>
+
+      <div class="principles-grid" style="margin-bottom: 32px;">
+        <div class="principle-card" style="border-color: rgba(16, 185, 129, 0.35);">
+          <span class="principle-num">📵 Zero Spam Calls</span>
+          <h4>Mobile Number Hidden Until You Approve</h4>
+          <p>
+            Strangers browsing the map can <strong>never</strong> see your phone number or WhatsApp. Your number is shared only with the specific person whose rental request you explicitly approve.
+          </p>
+        </div>
+
+        <div class="principle-card" style="border-color: rgba(16, 185, 129, 0.35);">
+          <span class="principle-num">🏠 No Doorstep Strangers</span>
+          <h4>Exact Home Address Is Never Shown</h4>
+          <p>
+            We never display your flat number, building name, or exact GPS pin. The map only shows a rough 150-metre neighbourhood zone so nobody knows which house is yours.
+          </p>
+        </div>
+
+        <div class="principle-card" style="border-color: rgba(16, 185, 129, 0.35);">
+          <span class="principle-num">✅ 100% In Your Control</span>
+          <h4>Review Profile Before Approving</h4>
+          <p>
+            When someone requests your item (or responds to your Wanted Pin), you see their verified name, community rating, and dates first. If you decline, they never see your contact info.
+          </p>
+        </div>
+
+        <div class="principle-card" style="border-color: rgba(16, 185, 129, 0.35);">
+          <span class="principle-num">☕ Safe Handover Spots</span>
+          <h4>Meet at a Metro Station or Café</h4>
+          <p>
+            Even after you approve a request, you never have to share your home address. Hand over the item at a nearby Metro Station, Third Wave Coffee, or your society gate.
+          </p>
+        </div>
+      </div>
+
+      <!-- Visual Before vs After Approval Comparison Box -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-highlight); border-radius: var(--radius-lg); padding: 26px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: center;">
+        <div style="background: rgba(7, 11, 20, 0.75); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px;">
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #fb923c; text-transform: uppercase; margin-bottom: 8px; font-weight: 700;">
+            👁️ What People See While Browsing the Map
+          </div>
+          <ul style="list-style: none; font-size: 0.9rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 8px;">
+            <li>✅ Item photos, daily price &amp; refundable deposit</li>
+            <li>✅ Approximate neighbourhood zone (e.g., <em>HSR Sector 2 · ~1.2 km</em>)</li>
+            <li>🔒 <strong>Mobile Number:</strong> <span style="color:#f8fafc;">Hidden &amp; Locked</span></li>
+            <li>🔒 <strong>Exact House/Flat Address:</strong> <span style="color:#f8fafc;">Never Shown</span></li>
+          </ul>
+        </div>
+
+        <div style="background: rgba(16, 185, 129, 0.09); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: var(--radius-md); padding: 20px;">
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #34d399; text-transform: uppercase; margin-bottom: 8px; font-weight: 700;">
+            🤝 Only After Mutual Approval (Request Accepted)
+          </div>
+          <ul style="list-style: none; font-size: 0.9rem; color: #e2e8f0; display: flex; flex-direction: column; gap: 8px;">
+            <li>🔓 Direct WhatsApp / Mobile link unlocked for both sides</li>
+            <li>🔓 Agree on a convenient pickup time &amp; public meetup spot</li>
+            <li>🛡️ Both Renter &amp; Rentee stay in complete control of their privacy</li>
+            <li>⭐ Rate each other after the item is safely returned</li>
+          </ul>
         </div>
       </div>
     </div>
