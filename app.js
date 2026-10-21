@@ -408,7 +408,7 @@ function renderRecentPledges() {
 
 function shareOnWhatsApp() {
   const msg = encodeURIComponent(
-    "Hey! Someone is building 'Rent Anything' for Bengaluru (like bengaluru.rent but for renting cameras, tents, drills & projectors from neighbours with 0 fees). Vote for our neighbourhood here: " + window.location.href
+    "Hey! Check out 'Rent Anything' coming soon to Bengaluru — a free, map-first app to rent cameras, tents, drills & projectors from neighbours nearby. Vote for our neighbourhood here: " + window.location.href
   );
   window.open(`https://wa.me/?text=${msg}`, "_blank");
 }
