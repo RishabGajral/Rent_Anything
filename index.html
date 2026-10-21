@@ -16,7 +16,7 @@
   <!-- Top Validation Banner -->
   <div class="top-banner">
     <span class="pulse-dot"></span>
-    <span><strong>Phase 0 Community Validation Live in Bengaluru:</strong> We’re testing excitement before launching neighbourhood #1. Are you in?</span>
+    <span><strong>Coming Soon to Bengaluru:</strong> A faster, safer way to rent everyday gear from neighbours nearby. Are you in?</span>
     <a href="#excitement-poll" style="color:#34d399; font-weight:700; text-decoration:underline;">Vote for your area →</a>
   </div>
 
@@ -26,15 +26,13 @@
       <a href="#" class="brand">
         <div class="brand-icon">📍</div>
         <span>Rent Anything</span>
-        <span class="brand-badge">BLR MVP</span>
+        <span class="brand-badge">BENGALURU</span>
       </a>
       <nav class="nav-links">
-        <a href="#app-preview">App Screens</a>
-        <a href="#live-map-demo">Live Map Demo</a>
-        <a href="#excitement-poll">Vote Neighbourhood</a>
-        <a href="#principles">8 Principles</a>
-        <a href="#personas">User Journeys</a>
-        <a href="#architecture">Tech Stack</a>
+        <a href="#app-preview">App Preview</a>
+        <a href="#live-map-demo">Try Live Map</a>
+        <a href="#excitement-poll">Vote Your Area</a>
+        <a href="#personas">Use Cases</a>
       </nav>
       <button class="nav-cta" onclick="triggerQuickExcitement()">
         <span>🔥 I'm Excited!</span>
@@ -55,10 +53,10 @@
             <span class="gradient-text">Rent it today.</span>
           </h1>
           <p class="hero-lead">
-            Need a <strong>50mm lens</strong> for a cousin's wedding, a <strong>camping tent</strong> for a weekend trek, a <strong>Bosche drill</strong> for 2 hours, or a <strong>projector</strong> for match night? Stop buying things you use once. Rent from verified neighbours 800m away.
+            Need a <strong>50mm lens</strong> for a cousin's wedding, a <strong>camping tent</strong> for a weekend trek, a <strong>Bosch drill</strong> for 2 hours, or a <strong>projector</strong> for match night? Stop buying things you use once. Rent from verified neighbours 800m away.
           </p>
           <div class="hero-quote">
-            “No landing page carousel. No login required to browse. Tap a WhatsApp link → full-screen map with live price pins in <strong>&lt;3 seconds</strong>.”
+            “Open the page and immediately see a map full of items available around your street — no login required to browse, and 100% free to use.”
           </div>
 
           <!-- Interactive Excitement Box -->
@@ -129,39 +127,38 @@
   <section id="app-preview" style="background: rgba(15, 23, 42, 0.45); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="container">
       <div class="section-header">
-        <div class="eyebrow">📱 First Look at the App Experience</div>
-        <h2 class="section-title">Designed for a ₹12,000 Android Phone on 4G</h2>
+        <div class="eyebrow">📱 Sneak Peek at the App</div>
+        <h2 class="section-title">How Rent Anything Works in 3 Simple Steps</h2>
         <p class="section-subtitle">
-          Here is what the upcoming <strong>Rent Anything</strong> mobile web app looks like in action — built around three frictionless flows: Browse without login, Request in one tap, and Safe neighbourhood handover.
+          Here is what the upcoming <strong>Rent Anything</strong> app looks like — built so you can find what you need near you, book it in seconds, and pick it up safely in your neighbourhood.
         </p>
       </div>
 
       <div class="mockup-tabs">
-        <button class="mockup-tab-btn active" onclick="highlightMockupCard('all', this)">Show All 3 Core Screens</button>
-        <button class="mockup-tab-btn" onclick="highlightMockupCard(0, this)">🗺️ Screen 1: Map-First Home (R1–R6)</button>
-        <button class="mockup-tab-btn" onclick="highlightMockupCard(1, this)">📸 Screen 2: Item Detail & Calendar (R4, R12)</button>
-        <button class="mockup-tab-btn" onclick="highlightMockupCard(2, this)">🤝 Screen 3: Privacy & WhatsApp Handover (R8, R14)</button>
+        <button class="mockup-tab-btn active" onclick="highlightMockupCard('all', this)">Show All 3 Screens</button>
+        <button class="mockup-tab-btn" onclick="highlightMockupCard(0, this)">🗺️ Step 1: Explore Nearby Map</button>
+        <button class="mockup-tab-btn" onclick="highlightMockupCard(1, this)">📸 Step 2: Check Dates &amp; Price</button>
+        <button class="mockup-tab-btn" onclick="highlightMockupCard(2, this)">🤝 Step 3: Safe Local Pickup</button>
       </div>
 
       <div class="mockup-showcase-grid">
         <!-- Mockup 1 -->
         <div class="mockup-card" id="mockup-card-0">
           <div class="mockup-img-container">
-            <span class="screen-step-tag">Screen 01 · Map is the Product</span>
-            <img src="assets/map-home-mockup.jpg" alt="Map Home Screen Mockup" onclick="openLightbox(this.src, 'Map-First Home Screen: See price pins & Wanted pins across Bengaluru with zero login required.')" />
+            <span class="screen-step-tag">Step 01 · Explore Nearby</span>
+            <img src="assets/map-home-mockup.jpg" alt="Map Home Screen Mockup" onclick="openLightbox(this.src, 'Explore Nearby: See daily rental prices and Wanted pins across your neighbourhood without even logging in.')" />
           </div>
           <div class="mockup-card-body">
             <div>
-              <h3>1. Full-Screen Map & Price Pins</h3>
+              <h3>1. Open the Map &amp; Spot Items Near You</h3>
               <p>
-                Open the link and immediately see live item pins (<code>📷 ₹600/day</code>, <code>⛺ ₹350/day</code>, <code>🔧 ₹200/day</code>) and orange <strong>Wanted Pins</strong> (<code>🔍 Need Projector</code>). Includes smart clustering, combined place + item search, and live savings counter.
+                Instantly see what neighbours around you are lending (<code>📷 ₹600/day</code>, <code>⛺ ₹350/day</code>, <code>🔧 ₹200/day</code>) or post an orange <strong>Wanted Pin</strong> (<code>🔍 Need Projector</code>) if you are looking for something specific.
               </p>
             </div>
             <div class="feature-Tag-list">
-              <span class="feature-tag">No Login Required</span>
-              <span class="feature-tag">Pin Clustering</span>
-              <span class="feature-tag">Wanted Pins</span>
-              <span class="feature-tag">&lt;3s on 4G</span>
+              <span class="feature-tag">No Login to Browse</span>
+              <span class="feature-tag">Live Price Pins</span>
+              <span class="feature-tag">Post Wanted Pins</span>
             </div>
           </div>
         </div>
@@ -169,21 +166,20 @@
         <!-- Mockup 2 -->
         <div class="mockup-card" id="mockup-card-1">
           <div class="mockup-img-container">
-            <span class="screen-step-tag">Screen 02 · Transparent Trust</span>
-            <img src="assets/item-detail-mockup.jpg" alt="Item Detail Bottom Sheet Mockup" onclick="openLightbox(this.src, 'Item Detail Card: Swipeable photos, daily & weekly pricing, refundable deposit, 30-day calendar, and 1-tap Request to Rent.')" />
+            <span class="screen-step-tag">Step 02 · Transparent Details</span>
+            <img src="assets/item-detail-mockup.jpg" alt="Item Detail Bottom Sheet Mockup" onclick="openLightbox(this.src, 'Item Details: Real photos, daily & weekly pricing, refundable deposit, 30-day calendar, and 1-tap Request to Rent.')" />
           </div>
           <div class="mockup-card-body">
             <div>
-              <h3>2. Bottom-Sheet Item Card & Calendar</h3>
+              <h3>2. Check Availability &amp; Request in One Tap</h3>
               <p>
-                Tap any pin to inspect swipeable condition photos, daily rate, refundable security deposit, approximate distance (e.g., <em>HSR Layout · 1.2 km away</em>), owner ratings (4.8★), and a live 30-day availability calendar.
+                Tap any pin to view real condition photos, daily or weekly rates, refundable deposit, distance from you (e.g., <em>HSR Layout · 1.2 km away</em>), neighbour ratings (4.8★), and available dates.
               </p>
             </div>
             <div class="feature-Tag-list">
               <span class="feature-tag">30-Day Calendar</span>
-              <span class="feature-tag">Deposit Clarity</span>
-              <span class="feature-tag">Google 1-Tap Auth</span>
-              <span class="feature-tag">WhatsApp Share</span>
+              <span class="feature-tag">Verified Ratings</span>
+              <span class="feature-tag">1-Tap Request</span>
             </div>
           </div>
         </div>
@@ -191,21 +187,20 @@
         <!-- Mockup 3 -->
         <div class="mockup-card" id="mockup-card-2">
           <div class="mockup-img-container">
-            <span class="screen-step-tag">Screen 03 · Privacy by Default</span>
-            <img src="assets/lister-connect-mockup.jpg" alt="Privacy Circle and WhatsApp Handover Mockup" onclick="openLightbox(this.src, 'Privacy & Safe Handover: Exact coordinates are rounded to ±150m. Contact is revealed only after the owner accepts your request.')" />
+            <span class="screen-step-tag">Step 03 · Privacy &amp; Pickup</span>
+            <img src="assets/lister-connect-mockup.jpg" alt="Privacy Circle and WhatsApp Handover Mockup" onclick="openLightbox(this.src, 'Safe Handover: Exact addresses are never shown. Connect on WhatsApp only after your request is accepted.')" />
           </div>
           <div class="mockup-card-body">
             <div>
-              <h3>3. ±150m Fuzzy Privacy & Safe Meetup</h3>
+              <h3>3. Safe Privacy Circle &amp; Easy Handover</h3>
               <p>
-                Exact addresses are <strong>never</strong> stored or displayed. Once an owner accepts a request, both parties unlock a direct WhatsApp link and meet at a public spot like a Metro Station or Third Wave Coffee.
+                Your exact flat or house address is <strong>never</strong> shown on the map. Once the owner accepts your request, you both connect on WhatsApp and meet at a convenient nearby spot like a Metro Station or café.
               </p>
             </div>
             <div class="feature-Tag-list">
-              <span class="feature-tag">±150m Fuzzy GPS</span>
-              <span class="feature-tag">Mutual Consent</span>
-              <span class="feature-tag">Condition Photos</span>
-              <span class="feature-tag">DPDP Ready</span>
+              <span class="feature-tag">Address Kept Private</span>
+              <span class="feature-tag">WhatsApp Connect</span>
+              <span class="feature-tag">Condition Verified</span>
             </div>
           </div>
         </div>
@@ -213,14 +208,14 @@
     </div>
   </section>
 
-  <!-- Section 2: Interactive Live Map Prototype (Powered by MapLibre GL JS) -->
+  <!-- Section 2: Interactive Live Map Prototype -->
   <section id="live-map-demo">
     <div class="container">
       <div class="section-header">
-        <div class="eyebrow">🗺️ Interactive Concept Sandbox · MapLibre GL JS</div>
-        <h2 class="section-title">Test Drive the Bengaluru Rental Map Right Now</h2>
+        <div class="eyebrow">🗺️ Interactive Map Preview</div>
+        <h2 class="section-title">Try the Live Bengaluru Rental Map</h2>
         <p class="section-subtitle">
-          Experience Principle #1 (<em>“The Map IS the Product”</em>). Click any pin in Indiranagar, Koramangala, HSR Layout, or Whitefield, filter categories, or test posting a Wanted Pin.
+          Click on any pin across Indiranagar, Koramangala, HSR Layout, or Whitefield, filter by category, or see how requesting an item works!
         </p>
       </div>
 
@@ -281,10 +276,10 @@
   <section id="excitement-poll" style="background: linear-gradient(180deg, rgba(16, 185, 129, 0.07) 0%, rgba(15, 23, 42, 0.6) 100%); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="container">
       <div class="section-header">
-        <div class="eyebrow">🔥 Demand Validation & Launch Waitlist</div>
+        <div class="eyebrow">🔥 Are You Excited? Vote Below</div>
         <h2 class="section-title">Bring Rent Anything to Your Neighbourhood First</h2>
         <p class="section-subtitle">
-          Why did older P2P rental startups fail? They launched city-wide with an empty map. <strong>Our Rule #4:</strong> Launch one dense micro-neighbourhood at a time (100–150 seeded items). Vote below to help us pick Launch Zone #1!
+          We are launching one Bengaluru neighbourhood at a time so the map is packed with useful items from Day 1. Vote for your area below to unlock it first!
         </p>
       </div>
 
@@ -398,70 +393,14 @@
     </div>
   </section>
 
-  <!-- Section 4: 8 Core Design Principles -->
-  <section id="principles">
+  <!-- Section 4: Everyday Use Cases & Personas -->
+  <section id="personas">
     <div class="container">
       <div class="section-header">
-        <div class="eyebrow">🧭 Product Philosophy</div>
-        <h2 class="section-title">8 Non-Negotiable Design Principles</h2>
+        <div class="eyebrow">👥 Built for Everyday Life in Bengaluru</div>
+        <h2 class="section-title">Save Thousands as a Renter. Earn Effortlessly as an Owner.</h2>
         <p class="section-subtitle">
-          Engineered from the ground up for hyperlocal, short-term peer-to-peer consumer item rentals with zero friction.
-        </p>
-      </div>
-
-      <div class="principles-grid">
-        <div class="principle-card">
-          <span class="principle-num">Principle #01</span>
-          <h4>Map IS the Product</h4>
-          <p>No bloated landing page, no onboarding carousel. The interactive map full of price pins IS the very first screen.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-num">Principle #02</span>
-          <h4>Zero Friction to Browse</h4>
-          <p>No login, no app install, no invasive permissions. Tap a WhatsApp link → browse the live map in under 3 seconds.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-num">Principle #03</span>
-          <h4>List in Under 2 Minutes</h4>
-          <p>Minimal required fields, smart defaults, client-side browser photo compression, and 1-tap GPS pre-fill.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-num">Principle #04</span>
-          <h4>One Neighbourhood at a Time</h4>
-          <p>Never launch city-wide with sparse pins. High pin density in HSR Layout or Indiranagar beats thin coverage across Bengaluru.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-num">Principle #05</span>
-          <h4>Community First, Business Later</h4>
-          <p>No platform fees, no ads, and no premium tiers for at least 9 months until organic neighbourhood habit is proven.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-num">Principle #06</span>
-          <h4>Privacy by Default (DPDP)</h4>
-          <p>Exact coordinates rounded to ±150m before storage. Contact details revealed only after mutual request acceptance.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-num">Principle #07</span>
-          <h4>Cost Near Zero (&lt;₹3,000/mo)</h4>
-          <p>Every architectural choice optimises for free tiers (Supabase, MapLibre, Vercel, Resend) to survive without premature commissions.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-num">Principle #08</span>
-          <h4>Mobile-First, Not Mobile-Only</h4>
-          <p>Engineered for a ₹12,000 Android phone on 4G (360px viewport, ≥44px touch targets, &lt;1.5s First Contentful Paint).</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 5: User Personas & Counter-Strategy -->
-  <section id="personas" style="background: rgba(15, 23, 42, 0.45); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-    <div class="container">
-      <div class="section-header">
-        <div class="eyebrow">👥 Who Is Rent Anything Built For?</div>
-        <h2 class="section-title">Real Bengaluru Personas & Why We Win</h2>
-        <p class="section-subtitle">
-          Bengaluru’s young, mobile population constantly needs gear for a weekend — while the same gear sits idle in a neighbour’s cupboard 500 metres away.
+          Why buy expensive gear for a single weekend when someone 500 metres away already owns it and barely uses it?
         </p>
       </div>
 
@@ -471,14 +410,14 @@
             <div class="persona-avatar">📸</div>
             <div>
               <h4 style="font-size:1.05rem;">Arjun, 27</h4>
-              <span style="font-size:0.78rem; color:#34d399; font-family:var(--font-mono);">HSR Layout · Renter</span>
+              <span style="font-size:0.78rem; color:#34d399; font-family:var(--font-mono);">HSR Layout · Weekend Renter</span>
             </div>
           </div>
           <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
-            <strong>Scenario:</strong> Cousin's wedding this Saturday. Wants a 50mm f/1.4 lens for 2 days. Buying costs ₹35,000; SP Road shop is far and charges ₹1,500.
+            <strong>Need:</strong> Wants a 50mm f/1.4 camera lens for his cousin's wedding this Saturday. Buying costs ₹35,000, and rental shops across town are far and pricey.
           </p>
           <div style="font-size:0.82rem; color:#e2e8f0; background:rgba(16,185,129,0.1); padding:10px; border-radius:8px; border-left:3px solid var(--primary);">
-            <strong>What wins him:</strong> Sees a pin 1.2 km away for ₹600/day, taps Request, picks up Friday evening at Silk Board Metro.
+            <strong>With Rent Anything:</strong> Spots a pin 1.2 km away for ₹600/day, sends a 1-tap request, and picks it up Friday evening at Silk Board Metro.
           </div>
         </div>
 
@@ -487,14 +426,14 @@
             <div class="persona-avatar">⛺</div>
             <div>
               <h4 style="font-size:1.05rem;">Priya, 31</h4>
-              <span style="font-size:0.78rem; color:#34d399; font-family:var(--font-mono);">Koramangala · Owner</span>
+              <span style="font-size:0.78rem; color:#34d399; font-family:var(--font-mono);">Koramangala · Item Owner</span>
             </div>
           </div>
           <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
-            <strong>Scenario:</strong> Owns a ₹8,000 camping tent, ₹4,000 JBL speaker, and ₹3,500 drill gathering dust. Wants passive income without strangers knowing her flat number.
+            <strong>Need:</strong> Has a camping tent, JBL speaker, and power drill sitting in her cupboard 340 days a year. Wants to earn from them without sharing her home address.
           </p>
           <div style="font-size:0.82rem; color:#e2e8f0; background:rgba(16,185,129,0.1); padding:10px; border-radius:8px; border-left:3px solid var(--primary);">
-            <strong>What wins her:</strong> Lists in 90 seconds with ±150m fuzzy location. Meets at Third Wave Coffee, collects ₹1,000 UPI deposit.
+            <strong>With Rent Anything:</strong> Lists in 90 seconds with a private ±150m map pin. Meets renters at Third Wave Coffee and collects a refundable UPI deposit.
           </div>
         </div>
 
@@ -502,142 +441,32 @@
           <div class="persona-header">
             <div class="persona-avatar">🍼</div>
             <div>
-              <h4 style="font-size:1.05rem;">Rahul & Sneha</h4>
-              <span style="font-size:0.78rem; color:#fb923c; font-family:var(--font-mono);">Whitefield · Wanted Pin</span>
+              <h4 style="font-size:1.05rem;">Rahul &amp; Sneha</h4>
+              <span style="font-size:0.78rem; color:#fb923c; font-family:var(--font-mono);">Whitefield · New Parents</span>
             </div>
           </div>
           <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
-            <strong>Scenario:</strong> Just moved to Whitefield. Need a baby cot for 2–3 months while settling in. Buying new is ₹12,000; Rentomojo is ₹800/mo + lock-in.
+            <strong>Need:</strong> Just moved to Whitefield and need a baby cot for 2 months while settling in, without spending ₹12,000 on a new one.
           </p>
           <div style="font-size:0.82rem; color:#e2e8f0; background:rgba(249,115,22,0.12); padding:10px; border-radius:8px; border-left:3px solid var(--accent-orange);">
-            <strong>What wins them:</strong> Posts an orange <em>Wanted Pin</em>. Gets notified that a neighbour 800m away has an outgrown cot for ₹400/mo.
+            <strong>With Rent Anything:</strong> Drops an orange <em>Wanted Pin</em> on the map and gets matched with a family 800m away lending their outgrown cot for ₹400/month.
           </div>
         </div>
 
         <div class="persona-card">
           <div class="persona-header">
-            <div class="persona-avatar">🏪</div>
+            <div class="persona-avatar">🎸</div>
             <div>
-              <h4 style="font-size:1.05rem;">Deepak, 42</h4>
-              <span style="font-size:0.78rem; color:#60a5fa; font-family:var(--font-mono);">SP Road · Phase 4 Shop</span>
+              <h4 style="font-size:1.05rem;">House Parties &amp; DIY</h4>
+              <span style="font-size:0.78rem; color:#60a5fa; font-family:var(--font-mono);">Indiranagar · Community</span>
             </div>
           </div>
           <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
-            <strong>Scenario:</strong> Local camera equipment rental shop owner with 50+ items who currently relies only on word-of-mouth and static Google Maps reviews.
+            <strong>Need:</strong> Hosting friends for match night or fixing up a new flat over the weekend — need a projector, board games, pressure washer, or ladder for a day.
           </p>
           <div style="font-size:0.82rem; color:#e2e8f0; background:rgba(59,130,246,0.12); padding:10px; border-radius:8px; border-left:3px solid var(--accent-blue);">
-            <strong>What wins him:</strong> Verified "Shop" badge on the map, bulk upload, and local demand analytics.
+            <strong>With Rent Anything:</strong> Browse your street map with zero platform fees, rent for ₹200–₹500/day, and return it the next evening.
           </div>
-        </div>
-      </div>
-
-      <!-- Counter-Strategy Table -->
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Why Past P2P Rental Startups Failed (Rentomo, RentSher, Fat Llama)</th>
-              <th>Our Rent-Anything Counter-Strategy</th>
-              <th>Key Platform Advantages</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>1. Cold-Start / Empty Map:</strong> Launched city-wide; users saw zero items near them and bounced.</td>
-              <td><strong>Micro-Neighbourhood Density:</strong> Seed 100–150 items by hand in ONE area before expanding.</td>
-              <td><strong>Flexible Pricing:</strong> Short-term daily &amp; weekly rates + refundable security deposit clarity.</td>
-            </tr>
-            <tr>
-              <td><strong>2. Trust Gap:</strong> Handing a ₹50k camera to a stranger without protection felt risky.</td>
-              <td><strong>Start with Low/Mid-Value Gear:</strong> Drills, tents, projectors + condition photos, ratings &amp; UPI deposits.</td>
-              <td><strong>Live Availability:</strong> Interactive 30-day booking calendar on every item card.</td>
-            </tr>
-            <tr>
-              <td><strong>3. Logistics Friction:</strong> High coordination effort for a ₹300/day item.</td>
-              <td><strong>Hyperlocal (&lt;1.5 km) + Safe Spots:</strong> Meet at nearby Metro stations or cafés; WhatsApp 1-click connect.</td>
-              <td><strong>Demand Signal:</strong> Orange <em>Wanted Pins</em> ("Need projector Oct 20–22") with 5km daily owner email digest.</td>
-            </tr>
-            <tr>
-              <td><strong>4. Premature Monetisation &amp; High Fees:</strong> Charging 20–25% commission killed liquidity.</td>
-              <td><strong>Near-Zero Cost (&lt;₹3k/mo):</strong> 100% free for 9+ months. No employees, no inventory, community-driven.</td>
-              <td><strong>Privacy-First Reveal:</strong> Contact info is revealed only after the owner accepts a structured date request.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 6: System Architecture & Mentioned Tools -->
-  <section id="architecture">
-    <div class="container">
-      <div class="section-header">
-        <div class="eyebrow">⚙️ Built With Modern Zero-Cost Tools</div>
-        <h2 class="section-title">System Architecture (&lt;₹3,000/Month at Scale)</h2>
-        <p class="section-subtitle">
-          Every tool mentioned in our specification is chosen to deliver sub-3-second mobile performance on 4G while keeping infrastructure costs near zero.
-        </p>
-      </div>
-
-      <div class="tech-grid">
-        <div class="tech-card">
-          <div class="tech-card-head">
-            <strong>Next.js (App Router) + React</strong>
-            <span class="tech-cost-tag">Vercel Free Tier</span>
-          </div>
-          <p style="font-size:0.86rem; color:var(--text-muted);">
-            SSR for SEO browse pages (<code>/rent/cameras/indiranagar</code>) and fast CSR for the interactive map & PWA offline service worker shell.
-          </p>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-card-head">
-            <strong>MapLibre GL JS + Vector Tiles</strong>
-            <span class="tech-cost-tag">Open Source</span>
-          </div>
-          <p style="font-size:0.86rem; color:var(--text-muted);">
-            Drop-in open-source WebGL map rendering, dynamic price pins, zoom-level clustering (≤15 zoom), and smooth pan/zoom on budget Android phones.
-          </p>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-card-head">
-            <strong>Supabase + PostgreSQL + PostGIS</strong>
-            <span class="tech-cost-tag">Free Tier (500MB)</span>
-          </div>
-          <p style="font-size:0.86rem; color:var(--text-muted);">
-            Powers geospatial queries (<code>ST_DWithin</code> 5km radius alerts, <code>ST_MakeEnvelope</code> viewport queries), Row-Level Security (RLS), and Realtime badges.
-          </p>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-card-head">
-            <strong>Supabase Auth & Storage</strong>
-            <span class="tech-cost-tag">50k MAU Free</span>
-          </div>
-          <p style="font-size:0.86rem; color:var(--text-muted);">
-            Google OAuth 1-tap + Magic Link verification. Client-side browser image compression uploads directly to S3-compatible Supabase Storage CDN.
-          </p>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-card-head">
-            <strong>Supabase Edge Functions + Resend</strong>
-            <span class="tech-cost-tag">3,000 Emails/mo Free</span>
-          </div>
-          <p style="font-size:0.86rem; color:var(--text-muted);">
-            Deno edge functions + <code>pg_cron</code> trigger instant request emails, post-rental return reminders, and daily 5km Wanted Pin digests via Resend.
-          </p>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-card-head">
-            <strong>Nominatim / Photon + Plausible</strong>
-            <span class="tech-cost-tag">Cookie-Free DPDP</span>
-          </div>
-          <p style="font-size:0.86rem; color:var(--text-muted);">
-            Free open-source geocoding for Bengaluru neighbourhood search (&lt;500ms) paired with privacy-first, cookie-less Plausible/Umami analytics.
-          </p>
         </div>
       </div>
     </div>
@@ -647,17 +476,17 @@
   <footer>
     <div class="container">
       <div style="font-weight:800; font-size:1.2rem; color:var(--text-main); margin-bottom:8px;">
-        📍 Rent Anything Bengaluru — Pre-Launch Concept & Demand Tracker
+        📍 Rent Anything Bengaluru — Coming Soon to Your Neighbourhood
       </div>
       <p style="max-width:640px; margin:0 auto 18px;">
-        An intermediary community map tool. Zero platform fees, privacy by default (±150m fuzzy coordinates), and built for neighbours in Bengaluru.
+        100% free community platform to rent and lend everyday items with neighbours nearby. Privacy-first, zero platform fees, built for Bengaluru.
       </p>
       <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:20px;">
         <button class="nav-cta" onclick="triggerQuickExcitement()">🔥 Click to Add Your Excitement Vote</button>
-        <a href="#live-map-demo" class="btn-secondary" style="padding:9px 18px;">🗺️ Explore Map Prototype</a>
+        <a href="#live-map-demo" class="btn-secondary" style="padding:9px 18px;">🗺️ Try the Map Preview</a>
       </div>
       <div style="font-size:0.78rem; color:var(--text-dim);">
-        DPDP Compliant · 18+ Honour Gate · Prohibited Items Auto-Filter · Built for Bengaluru Communities
+        Privacy Protected (±150m Fuzzy Pins) · Verified Community Ratings · Made for Bengaluru
       </div>
     </div>
   </footer>

@@ -57,7 +57,7 @@ const BENGALURU_PINS = [
     pricePerDay: 500,
     weeklyPrice: null,
     deposit: 1500,
-    condition: "Wanted Pin (R16)",
+    condition: "Wanted Pin",
     area: "Near Indiranagar 100Ft Rd",
     distanceKm: "1.5 km away",
     coords: [77.6408, 12.9718],
@@ -152,7 +152,7 @@ const BENGALURU_PINS = [
     pricePerDay: 450,
     weeklyPrice: null,
     deposit: 2000,
-    condition: "Wanted Pin (R16)",
+    condition: "Wanted Pin",
     area: "Koramangala 1st Block",
     distanceKm: "1.3 km away",
     coords: [77.6321, 12.9279],
@@ -618,7 +618,7 @@ function renderDetailPanel(pin) {
         <button class="btn-secondary" style="flex:1; padding:9px; font-size:0.8rem;" onclick="shareOnWhatsApp()">
           📲 Share on WhatsApp
         </button>
-        <button class="btn-secondary" style="padding:9px 12px; font-size:0.8rem;" onclick="showToast('🛡️ Report submitted (3 unique reports auto-hide a listing per R18).')">
+        <button class="btn-secondary" style="padding:9px 12px; font-size:0.8rem;" onclick="showToast('🛡️ Thanks! Our community moderation team reviews reported listings promptly.')">
           🚩 Report
         </button>
       </div>
@@ -631,7 +631,7 @@ function simulateRentRequest(itemTitle, isWanted) {
   if (isWanted) {
     showToast(`🎉 Demo Offer Sent for "${itemTitle}"! Your excitement vote was also counted.`);
   } else {
-    showToast(`🎉 Demo Request Sent for "${itemTitle}"! Owner gets an instant Resend email + WhatsApp link on accept.`);
+    showToast(`🎉 Demo Request Sent for "${itemTitle}"! Once the owner accepts, you'll both connect on WhatsApp.`);
   }
 }
 
