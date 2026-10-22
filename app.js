@@ -414,38 +414,15 @@ function shareOnWhatsApp() {
 }
 
 // ============================================================================
-// Free Map & Geocoding APIs Linked in This Page (No API Key Required)
-// 1. OpenFreeMap Vector Style API: https://tiles.openfreemap.org/styles/liberty
-// 2. CARTO Voyager Raster Tiles API: https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png
+// Free Map & Geocoding APIs Linked in This Page (100% Free, No API Key Needed)
+// 1. OpenFreeMap Liberty Vector API (Default): https://tiles.openfreemap.org/styles/liberty
+// 2. OpenFreeMap Positron Vector API (Alternate): https://tiles.openfreemap.org/styles/positron
 // 3. Photon (Komoot/OSM) Search API: https://photon.komoot.io/api/?q=...&lat=12.9716&lon=77.5946
 // 4. OSM Nominatim Reverse Geocode API: https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=...&lon=...
 // ============================================================================
-const CARTO_VOYAGER_STYLE = {
-  version: 8,
-  sources: {
-    "carto-voyager": {
-      type: "raster",
-      tiles: [
-        "https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png",
-        "https://b.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png"
-      ],
-      tileSize: 256,
-      attribution: "© OpenStreetMap contributors, © CARTO"
-    }
-  },
-  layers: [
-    {
-      id: "carto-voyager-layer",
-      type: "raster",
-      source: "carto-voyager",
-      minzoom: 0,
-      maxzoom: 20
-    }
-  ]
-};
-
-const OPENFREEMAP_VECTOR_STYLE = "https://tiles.openfreemap.org/styles/liberty";
-let usingVectorStyle = false;
+const OPENFREEMAP_LIBERTY_STYLE = "https://tiles.openfreemap.org/styles/liberty";
+const OPENFREEMAP_POSITRON_STYLE = "https://tiles.openfreemap.org/styles/positron";
+let usingPositronStyle = false;
 let geocodeDebounceTimer = null;
 
 function initBengaluruMap() {
@@ -454,7 +431,7 @@ function initBengaluruMap() {
 
   mapInstance = new maplibregl.Map({
     container: "bengaluru-map",
-    style: CARTO_VOYAGER_STYLE,
+    style: OPENFREEMAP_LIBERTY_STYLE,
     center: [77.6410, 12.9420], // Central between Indiranagar, Koramangala & HSR
     zoom: 12.3
   });
@@ -477,16 +454,16 @@ function initBengaluruMap() {
 
 function toggleMapTileStyle() {
   if (!mapInstance) return;
-  usingVectorStyle = !usingVectorStyle;
+  usingPositronStyle = !usingPositronStyle;
   const btn = document.getElementById("map-style-btn");
-  if (usingVectorStyle) {
-    mapInstance.setStyle(OPENFREEMAP_VECTOR_STYLE);
-    if (btn) btn.textContent = "🗺️ Standard Map";
-    showToast("✨ Switched to OpenFreeMap Vector API (tiles.openfreemap.org)");
+  if (usingPositronStyle) {
+    mapInstance.setStyle(OPENFREEMAP_POSITRON_STYLE);
+    if (btn) btn.textContent = "🗺️ Detailed Map";
+    showToast("✨ Switched to OpenFreeMap Positron Light Style");
   } else {
-    mapInstance.setStyle(CARTO_VOYAGER_STYLE);
-    if (btn) btn.textContent = "🗺️ Vector Map";
-    showToast("🗺️ Switched to CARTO Voyager Street Tiles API");
+    mapInstance.setStyle(OPENFREEMAP_LIBERTY_STYLE);
+    if (btn) btn.textContent = "🗺️ Minimal Map";
+    showToast("🗺️ Switched to OpenFreeMap Liberty Street Style");
   }
 }
 
