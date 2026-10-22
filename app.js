@@ -414,37 +414,47 @@ function shareOnWhatsApp() {
 }
 
 // ============================================================================
-// Interactive MapLibre GL JS Map Prototype (Requirements R1-R8)
+// Free Map & Geocoding APIs Linked in This Page (No API Key Required)
+// 1. OpenFreeMap Vector Style API: https://tiles.openfreemap.org/styles/liberty
+// 2. CARTO Voyager Raster Tiles API: https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png
+// 3. Photon (Komoot/OSM) Search API: https://photon.komoot.io/api/?q=...&lat=12.9716&lon=77.5946
+// 4. OSM Nominatim Reverse Geocode API: https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=...&lon=...
 // ============================================================================
+const CARTO_VOYAGER_STYLE = {
+  version: 8,
+  sources: {
+    "carto-voyager": {
+      type: "raster",
+      tiles: [
+        "https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png",
+        "https://b.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png"
+      ],
+      tileSize: 256,
+      attribution: "© OpenStreetMap contributors, © CARTO"
+    }
+  },
+  layers: [
+    {
+      id: "carto-voyager-layer",
+      type: "raster",
+      source: "carto-voyager",
+      minzoom: 0,
+      maxzoom: 20
+    }
+  ]
+};
+
+const OPENFREEMAP_VECTOR_STYLE = "https://tiles.openfreemap.org/styles/liberty";
+let usingVectorStyle = false;
+let geocodeDebounceTimer = null;
+
 function initBengaluruMap() {
   const mapContainer = document.getElementById("bengaluru-map");
   if (!mapContainer || typeof maplibregl === "undefined") return;
 
   mapInstance = new maplibregl.Map({
     container: "bengaluru-map",
-    style: {
-      version: 8,
-      sources: {
-        "carto-dark": {
-          type: "raster",
-          tiles: [
-            "https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png",
-            "https://b.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png"
-          ],
-          tileSize: 256,
-          attribution: "© OpenStreetMap contributors, © CARTO"
-        }
-      },
-      layers: [
-        {
-          id: "carto-dark-layer",
-          type: "raster",
-          source: "carto-dark",
-          minzoom: 0,
-          maxzoom: 20
-        }
-      ]
-    },
+    style: CARTO_VOYAGER_STYLE,
     center: [77.6410, 12.9420], // Central between Indiranagar, Koramangala & HSR
     zoom: 12.3
   });
@@ -454,6 +464,30 @@ function initBengaluruMap() {
   mapInstance.on("load", () => {
     renderMapPins(BENGALURU_PINS);
   });
+
+  // Hide geocoding dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    const box = document.getElementById("geo-suggestions");
+    const input = document.getElementById("map-search-input");
+    if (box && e.target !== input && !box.contains(e.target)) {
+      box.style.display = "none";
+    }
+  });
+}
+
+function toggleMapTileStyle() {
+  if (!mapInstance) return;
+  usingVectorStyle = !usingVectorStyle;
+  const btn = document.getElementById("map-style-btn");
+  if (usingVectorStyle) {
+    mapInstance.setStyle(OPENFREEMAP_VECTOR_STYLE);
+    if (btn) btn.textContent = "🗺️ Standard Map";
+    showToast("✨ Switched to OpenFreeMap Vector API (tiles.openfreemap.org)");
+  } else {
+    mapInstance.setStyle(CARTO_VOYAGER_STYLE);
+    if (btn) btn.textContent = "🗺️ Vector Map";
+    showToast("🗺️ Switched to CARTO Voyager Street Tiles API");
+  }
 }
 
 function renderMapPins(pins) {
@@ -503,12 +537,15 @@ function filterMapCategory(category, btnEl) {
 
 function handleMapSearch(query) {
   const q = query.trim().toLowerCase();
+  const suggestionBox = document.getElementById("geo-suggestions");
+
   if (!q) {
     renderMapPins(BENGALURU_PINS);
+    if (suggestionBox) suggestionBox.style.display = "none";
     return;
   }
 
-  // Place jump support (R5 Requirement: Combined place + item search)
+  // Instant jump for common neighbourhoods
   if (q.includes("indiranagar")) flyToArea(77.6412, 12.9719, 13.8);
   else if (q.includes("koramangala")) flyToArea(77.6245, 12.9352, 13.8);
   else if (q.includes("hsr")) flyToArea(77.6387, 12.9121, 13.8);
@@ -521,10 +558,60 @@ function handleMapSearch(query) {
     p.description.toLowerCase().includes(q)
   );
 
-  renderMapPins(filtered);
+  renderMapPins(filtered.length > 0 ? filtered : BENGALURU_PINS);
   if (filtered.length > 0) {
     renderDetailPanel(filtered[0]);
   }
+
+  // Query live free Photon (OpenStreetMap) Geocoding API biased to Bengaluru (12.9716, 77.5946)
+  clearTimeout(geocodeDebounceTimer);
+  if (q.length >= 3) {
+    geocodeDebounceTimer = setTimeout(() => {
+      fetchLivePlaceSuggestions(q);
+    }, 280);
+  } else if (suggestionBox) {
+    suggestionBox.style.display = "none";
+  }
+}
+
+async function fetchLivePlaceSuggestions(query) {
+  const suggestionBox = document.getElementById("geo-suggestions");
+  if (!suggestionBox) return;
+
+  try {
+    const url = `https://photon.komoot.io/api/?q=${encodeURIComponent(query + " Bengaluru")}&lat=12.9716&lon=77.5946&limit=4`;
+    const res = await fetch(url);
+    if (!res.ok) return;
+    const data = await res.json();
+    const features = data.features || [];
+
+    if (features.length === 0) {
+      suggestionBox.style.display = "none";
+      return;
+    }
+
+    suggestionBox.innerHTML = features.map(f => {
+      const [lng, lat] = f.geometry.coordinates;
+      const name = f.properties.name || f.properties.street || "Bengaluru Location";
+      const sub = [f.properties.district, f.properties.city, f.properties.state].filter(Boolean).join(", ");
+      return `
+        <div class="geo-suggestion-item" onclick="selectGeoSuggestion(${lng}, ${lat}, '${escapeHtml(name)}')">
+          <span>📍 <strong>${escapeHtml(name)}</strong> <small style="color:var(--text-muted);">${escapeHtml(sub)}</small></span>
+          <span style="font-family:var(--font-mono); font-size:0.72rem; color:#34d399;">Fly →</span>
+        </div>
+      `;
+    }).join("");
+    suggestionBox.style.display = "block";
+  } catch (err) {
+    suggestionBox.style.display = "none";
+  }
+}
+
+function selectGeoSuggestion(lng, lat, placeName) {
+  const suggestionBox = document.getElementById("geo-suggestions");
+  if (suggestionBox) suggestionBox.style.display = "none";
+  flyToArea(lng, lat, 14.2);
+  showToast(`📍 Centred map on ${placeName} via Photon OSM API`);
 }
 
 function flyToArea(lng, lat, zoom) {
@@ -534,8 +621,34 @@ function flyToArea(lng, lat, zoom) {
 }
 
 function locateUserDemo() {
-  flyToArea(77.6387, 12.9121, 14.3);
-  showToast("📍 Centred on HSR Layout (Simulated GPS ±150m privacy zone)");
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        // Round coordinates to ~150m fuzzy privacy precision (3 decimal places)
+        const fuzzyLat = Math.round(pos.coords.latitude * 1000) / 1000;
+        const fuzzyLng = Math.round(pos.coords.longitude * 1000) / 1000;
+        flyToArea(fuzzyLng, fuzzyLat, 14.3);
+
+        try {
+          const revUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${fuzzyLat}&lon=${fuzzyLng}`;
+          const res = await fetch(revUrl, { headers: { "Accept-Language": "en" } });
+          const data = await res.json();
+          const areaName = (data.address && (data.address.suburb || data.address.neighbourhood || data.address.city_district)) || "your area";
+          showToast(`📍 Located near ${areaName} (±150m fuzzy privacy zone applied)`);
+        } catch (_) {
+          showToast("📍 Centred on your ±150m fuzzy privacy zone!");
+        }
+      },
+      () => {
+        flyToArea(77.6387, 12.9121, 14.3);
+        showToast("📍 Centred on HSR Layout (Simulated ±150m privacy zone)");
+      },
+      { timeout: 5000 }
+    );
+  } else {
+    flyToArea(77.6387, 12.9121, 14.3);
+    showToast("📍 Centred on HSR Layout (Simulated ±150m privacy zone)");
+  }
 }
 
 // ============================================================================

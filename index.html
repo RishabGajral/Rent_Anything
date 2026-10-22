@@ -320,15 +320,22 @@
         <!-- Map Toolbar -->
         <div class="map-toolbar">
           <div class="map-search-group">
-            <input
-              type="text"
-              id="map-search-input"
-              class="map-search-input"
-              placeholder="Search 'projector', 'tent', 'HSR Layout', 'Indiranagar'..."
-              oninput="handleMapSearch(this.value)"
-            />
-            <button class="btn-secondary" style="padding:9px 14px; font-size:0.82rem;" onclick="locateUserDemo()">
+            <div class="map-search-wrapper">
+              <input
+                type="text"
+                id="map-search-input"
+                class="map-search-input"
+                autocomplete="off"
+                placeholder="Search item ('tent') or any BLR area ('Jayanagar', 'MG Road')..."
+                oninput="handleMapSearch(this.value)"
+              />
+              <div id="geo-suggestions" class="geo-suggestions"></div>
+            </div>
+            <button class="btn-secondary" style="padding:9px 14px; font-size:0.82rem; white-space:nowrap;" onclick="locateUserDemo()">
               🎯 Near Me
+            </button>
+            <button id="map-style-btn" class="btn-secondary" style="padding:9px 14px; font-size:0.82rem; white-space:nowrap;" onclick="toggleMapTileStyle()">
+              🗺️ Vector Map
             </button>
           </div>
 
