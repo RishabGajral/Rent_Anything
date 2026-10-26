@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useApp } from "@/context/AppContext";
 
 export default function AppPreview() {
   const { openLightbox } = useApp();
   const [activeStep, setActiveStep] = useState<number | "all">("all");
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const gridContainerRef = useRef<HTMLDivElement | null>(null);
 
   const steps = [
     {
@@ -34,10 +36,24 @@ export default function AppPreview() {
     },
   ];
 
+  const handleSelectStep = (step: number | "all") => {
+    setActiveStep(step);
+    requestAnimationFrame(() => {
+      if (step === "all") {
+        gridContainerRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      } else {
+        const targetEl = cardRefs.current[step];
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      }
+    });
+  };
+
   return (
     <section id="app-preview" className="py-20 bg-slate-900/40 border-b border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-semibold mb-3">
             📱 Sneak Peek at the App
           </div>
@@ -51,10 +67,10 @@ export default function AppPreview() {
           {/* Filter Pills */}
           <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
             <button
-              onClick={() => setActiveStep("all")}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              onClick={() => handleSelectStep("all")}
+              className={`px-3.5 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 activeStep === "all"
-                  ? "bg-emerald-500 text-slate-950 font-bold"
+                  ? "bg-emerald-500 text-slate-950 font-bold shadow-lg shadow-emerald-500/25"
                   : "bg-slate-800 text-slate-400 hover:text-white"
               }`}
             >
@@ -63,10 +79,10 @@ export default function AppPreview() {
             {steps.map((s, idx) => (
               <button
                 key={s.title}
-                onClick={() => setActiveStep(idx)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                onClick={() => handleSelectStep(idx)}
+                className={`px-3.5 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                   activeStep === idx
-                    ? "bg-emerald-500 text-slate-950 font-bold"
+                    ? "bg-emerald-500 text-slate-950 font-bold shadow-lg shadow-emerald-500/25"
                     : "bg-slate-800 text-slate-400 hover:text-white"
                 }`}
               >
@@ -77,14 +93,25 @@ export default function AppPreview() {
         </div>
 
         {/* 3 Step Mockup Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div ref={gridContainerRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((step, idx) => {
+            const isSelected = activeStep === idx;
             const isDimmed = activeStep !== "all" && activeStep !== idx;
             return (
               <div
                 key={step.title}
-                className={`flex flex-col rounded-2xl bg-slate-900 border border-slate-800 p-5 shadow-xl transition-all duration-300 hover:border-emerald-500/40 hover:-translate-y-1 ${
-                  isDimmed ? "opacity-35" : "opacity-100"
+                ref={(el) => {
+                  cardRefs.current[idx] = el;
+                }}
+                onClick={() => {
+                  if (isDimmed) handleSelectStep(idx);
+                }}
+                className={`flex-col rounded-2xl bg-slate-900 p-5 shadow-xl transition-all duration-300 hover:border-emerald-500/40 md:hover:-translate-y-1 ${
+                  isDimmed
+                    ? "hidden md:flex md:opacity-35 border border-slate-800 cursor-pointer"
+                    : isSelected
+                    ? "flex opacity-100 border-2 border-emerald-500 ring-4 ring-emerald-500/15 md:scale-[1.02]"
+                    : "flex opacity-100 border border-slate-800"
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
@@ -96,7 +123,10 @@ export default function AppPreview() {
 
                 <div
                   className="overflow-hidden rounded-xl bg-slate-950 mb-5 relative group cursor-pointer border border-slate-800"
-                  onClick={() => openLightbox(step.img, step.title)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openLightbox(step.img, step.title);
+                  }}
                 >
                   <img
                     src={step.img}
@@ -111,6 +141,42 @@ export default function AppPreview() {
                 <h3 className="text-lg font-bold text-white mb-1.5">{step.title}</h3>
                 <div className="text-xs font-medium text-emerald-400 mb-2">{step.tagline}</div>
                 <p className="text-sm text-slate-400 leading-relaxed mt-auto">{step.description}</p>
+
+                {/* Mobile quick-step navigation when viewing a single step */}
+                {activeStep !== "all" && (
+                  <div className="flex md:hidden items-center justify-between gap-2 mt-5 pt-4 border-t border-slate-800">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSelectStep(idx > 0 ? idx - 1 : "all");
+                      }}
+                      className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold"
+                    >
+                      {idx > 0 ? `← Step ${idx}` : "← All Steps"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSelectStep("all");
+                      }}
+                      className="text-xs text-slate-400 underline"
+                    >
+                      Show All 3
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSelectStep(idx < steps.length - 1 ? idx + 1 : "all");
+                      }}
+                      className="px-3 py-1.5 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-semibold"
+                    >
+                      {idx < steps.length - 1 ? `Step ${idx + 2} →` : "All Steps ✓"}
+                    </button>
+                  </div>
+                )}
               </div>
             );
           })}
